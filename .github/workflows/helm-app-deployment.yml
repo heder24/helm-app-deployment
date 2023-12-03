@@ -92,6 +92,7 @@ jobs:
     - name: Deploy AWS Load Balancer Controller
       run: |  
         helm repo add eks https://aws.github.io/eks-charts
+        helm repo update eks
         helm upgrade -i aws-load-balancer-controller eks/aws-load-balancer-controller \
           --namespace kube-system \
           --set clusterName=prod \
