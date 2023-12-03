@@ -35,8 +35,8 @@ jobs:
       with:
         version: 'latest'
     
-    - name: Helm init 
-      run: helm init
+    # - name: Helm init 
+      # run: helm init
 
     - name: Deploy AWS Load Balancer Controller
       run: |
