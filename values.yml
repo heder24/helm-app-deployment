@@ -1,0 +1,17 @@
+# aws-load-balancer-controller/values.yaml
+
+image:
+  repository: amazon/aws-alb-ingress-controller
+  tag: latest
+
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  name: alb-ingress-controller
+
+rbac:
+  create: true
+
+extraArgs: {}
