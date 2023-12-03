@@ -37,11 +37,11 @@ jobs:
     
     # - name: Helm init 
       # run: helm init
-    - name: Set up eksctl
-      uses: moia-oss/setup-eksctl@v1
-      with:
-        version: 'latest' # default is latest
-      id: install
+    # - name: Set up eksctl
+    #   uses: moia-oss/setup-eksctl@v1
+    #   with:
+    #     version: 'latest' # default is latest
+    #   id: install
         
 
     - name: Create IAM OIDC provider
