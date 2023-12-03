@@ -42,8 +42,8 @@ jobs:
       with:
         version: 'latest' # default is latest
       id: install
-        version: 'latest'
         
+
     - name: Create IAM OIDC provider
       run: |
         eksctl utils associate-iam-oidc-provider \
