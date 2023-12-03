@@ -38,7 +38,7 @@ jobs:
         aws-region: us-east-2
 
     - name: Deploy AWS Load Balancer Controller
-        run: |
-          helm repo add eks https://aws.github.io/eks-charts
-          helm repo update
-          helm upgrade -i aws-load-balancer-controller eks/aws-load-balancer-controller -n kube-system -f aws-load-balancer-controller/values.yaml
+      run: |
+        helm repo add eks https://aws.github.io/eks-charts
+        helm repo update
+        helm upgrade -i aws-load-balancer-controller eks/aws-load-balancer-controller -n kube-system -f aws-load-balancer-controller/values.yaml
