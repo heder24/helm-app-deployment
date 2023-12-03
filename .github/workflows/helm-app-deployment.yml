@@ -98,9 +98,9 @@ jobs:
       run: |
         helm repo update
 
-    - name: Install CRDS
-      run: |
-        kubectl apply -k "github.com/aws/eks-charts/stable/aws-load-balancer-controller//crds?ref=master"
+    # - name: Install CRDS
+    #   run: |
+    #     kubectl apply -k "github.com/aws/eks-charts/stable/aws-load-balancer-controller//crds?ref=master"
 
     - name: Deploy AWS Load Balancer Controller
       run: |
