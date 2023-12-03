@@ -64,12 +64,10 @@ jobs:
         --cluster prod \
         --approve
 
-    - name: Create IAM OIDC provider
+    - name: Download IAM policy for the AWS Load Balancer Controller
       run: |
         curl -o iam-policy.json https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/main/docs/install/iam_policy.json
 
-    - name: Deploy AWS Load Balancer Controller
-      run: |
 
     - name: Create an IAM policy called AWSLoadBalancerControllerIAMPolicy
       run: |
@@ -77,7 +75,7 @@ jobs:
         --policy-name AWSLoadBalancerControllerIAMPolicy \
         --policy-document file://iam-policy.json
 
-    - name: Create an IAM policy called AWSLoadBalancerControllerIAMPolicy
+    - name: Create a IAM role and ServiceAccount for the Load Balancer controller
       run: |
         eksctl create iamserviceaccount \
         --cluster=prod \
