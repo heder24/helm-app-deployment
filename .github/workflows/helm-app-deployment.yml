@@ -35,8 +35,8 @@ jobs:
       with:
         version: 'latest'
     
-    # - name: Helm init 
-      # run: helm init
+    - name: Helm init 
+      run: helm init
     # - name: Set up eksctl
     #   uses: moia-oss/setup-eksctl@v1
     #   with:
