@@ -37,9 +37,41 @@ jobs:
     
     # - name: Helm init 
       # run: helm init
+    - name: Create IAM OIDC provider
+      run: |
+        eksctl utils associate-iam-oidc-provider \
+        --region <aws-region> \
+        --cluster prod \
+        --approve
+
+    - name: Create IAM OIDC provider
+      run: |
+        curl -o iam-policy.json https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/main/docs/install/iam_policy.json
 
     - name: Deploy AWS Load Balancer Controller
       run: |
+
+    - name: Create an IAM policy called AWSLoadBalancerControllerIAMPolicy
+      run: |
+        aws iam create-policy \
+        --policy-name AWSLoadBalancerControllerIAMPolicy \
+        --policy-document file://iam-policy.json
+
+    - name: Create an IAM policy called AWSLoadBalancerControllerIAMPolicy
+      run: |
+        eksctl create iamserviceaccount \
+        --cluster=prod \
+        --namespace=kube-system \
+        --name=aws-load-balancer-controller \
+        --attach-policy-arn=arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:policy/AWSLoadBalancerControllerIAMPolicy \
+        --approve
+
+    - name: Install CRDS
+      run: |
+        kubectl apply -k "github.com/aws/eks-charts/stable/aws-load-balancer-controller//crds?ref=master"
+
+
+    - name: Install CRDS
+      run: |
         helm repo add eks https://aws.github.io/eks-charts
-        helm repo update
-        helm upgrade -i aws-load-balancer-controller eks/aws-load-balancer-controller -n kube-system -f aws-load-balancer-controller/values.yaml
+        helm upgrade -i aws-load-balancer-controller eks/aws-load-balancer-controller -n kube-system --set clusterName=<k8s-cluster-name> --set serviceAccount.create=false --set serviceAccount.name=aws-load-balancer-controller
