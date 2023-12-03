@@ -102,7 +102,6 @@ jobs:
       run: |
         kubectl apply -k "github.com/aws/eks-charts/stable/aws-load-balancer-controller//crds?ref=master"
 
-
     - name: Deploy AWS Load Balancer Controller
       run: |
         helm upgrade -i aws-load-balancer-controller eks/aws-load-balancer-controller \
