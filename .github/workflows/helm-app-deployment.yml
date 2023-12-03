@@ -84,20 +84,20 @@ jobs:
         --attach-policy-arn=arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:policy/AWSLoadBalancerControllerIAMPolicy \
         --approve
 
-    - name: Install CRDS
-      run: |
-        kubectl apply -k "github.com/aws/eks-charts/stable/aws-load-balancer-controller//crds?ref=master"
+    # - name: Install CRDS
+    #   run: |
+    #     kubectl apply -k "github.com/aws/eks-charts/stable/aws-load-balancer-controller//crds?ref=master"
 
 
-    # - name: Deploy AWS Load Balancer Controller
-    #   run: |  
-    #     helm repo add eks https://aws.github.io/eks-charts
-    #     helm upgrade -i aws-load-balancer-controller eks/aws-load-balancer-controller \
-    #       --namespace kube-system \
-    #       --set clusterName=prod \
-    #       --set serviceAccount.create=false \
-    #       --set serviceAccount.name=aws-load-balancer-controller \
-    #       --set region=us-east-2
+    - name: Deploy AWS Load Balancer Controller
+      run: |  
+        helm repo add eks https://aws.github.io/eks-charts
+        helm upgrade -i aws-load-balancer-controller eks/aws-load-balancer-controller \
+          --namespace kube-system \
+          --set clusterName=prod \
+          --set serviceAccount.create=false \
+          --set serviceAccount.name=aws-load-balancer-controller \
+          --set region=us-east-2
 
     - name: Verify deployment
       run: |
