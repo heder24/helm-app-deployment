@@ -78,10 +78,10 @@ jobs:
         curl -o iam-policy.json https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/main/docs/install/iam_policy.json
 
 
-    - name: Create an IAM policy called AWSLoadBalancerControllerIAMPolicy
+    - name: Create an IAM policy called awsLoadBalancerControllerIAMPolicy
       run: |
         aws iam create-policy \
-        --policy-name AWSLoadBalancerControllerIAMPolicy \
+        --policy-name awsLoadBalancerControllerIAMPolicy \
         --policy-document file://iam-policy.json
 
     - name: Create a IAM role and ServiceAccount for the Load Balancer controller
@@ -90,7 +90,7 @@ jobs:
         --cluster=prod \
         --namespace=kube-system \
         --name=aws-load-balancer-controller \
-        --attach-policy-arn=arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:policy/AWSLoadBalancerControllerIAMPolicy \
+        --attach-policy-arn=arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:policy/awsLoadBalancerControllerIAMPolicy \
         --approve
 
     # - name: Install CRDS
