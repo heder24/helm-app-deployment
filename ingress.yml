@@ -13,7 +13,7 @@ metadata:
     #alb.ingress.kubernetes.io/wafv2-acl-arn: <WAFv2 ACL ARN HERE>
 spec:
   rules:
-    - host: "*hederdevops.com"
+    - host: "www.hederdevops.com"
       http:
         paths:
           - path: /
