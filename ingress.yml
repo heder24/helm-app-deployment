@@ -10,7 +10,7 @@ metadata:
     alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-west-2:xxxxx:certificate/xxxxxxx
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
     alb.ingress.kubernetes.io/ssl-redirect: '443'
-    alb.ingress.kubernetes.io/wafv2-acl-arn: <WAFv2 ACL ARN HERE>
+    #alb.ingress.kubernetes.io/wafv2-acl-arn: <WAFv2 ACL ARN HERE>
 spec:
   rules:
     - host: "*.amazonaws.com"

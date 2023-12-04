@@ -125,7 +125,7 @@ jobs:
       run: | 
         # Download the SSL certificate and private key from AWS ACM
         aws acm export-certificate \
-          --certificate-arn YOUR_CERTIFICATE_ARN \
+          --certificate-arn arn:aws:acm:us-east-2:312029113425:certificate/9abb221d-17c8-4145-82b4-64bd368fd92c \
           --output pem \
           --no-include-private-key > certificate.pem
 

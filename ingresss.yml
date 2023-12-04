@@ -9,7 +9,7 @@ metadata:
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
     alb.ingress.kubernetes.io/actions.ssl-redirect: '{"Type": "redirect", "RedirectConfig": { "Protocol": "HTTPS", "Port": "443", "StatusCode": "HTTP_301"}}'
-    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:your-region:your-account-id:certificate/your-acm-certificate-id
+    alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:us-east-2:312029113425:certificate/f6a3d758-39b2-49b5-9c29-190551b19abd"
 spec:
   rules:
     - host: hederdevops.com
@@ -36,4 +36,4 @@ spec:
     - hosts:
         - hederdevops
         - www.hederdevops.com
-      secretName: your-tls-secret-name
+      secretName: knote-tls-secret
