@@ -111,7 +111,7 @@ jobs:
 
     - name: Deploy AWS Load Balancer Controller
       run: |
-        helm upgrade \
+        helm install \
           aws-load-balancer-controller \
           eks/aws-load-balancer-controller \
           --namespace "kube-system" \
