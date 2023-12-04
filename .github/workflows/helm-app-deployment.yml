@@ -78,24 +78,20 @@ jobs:
         curl -o iam-policy.json https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/main/docs/install/iam_policy.json
 
 
-    - name: Create an IAM policy called awsLoadBalancerControllerIAMPolicy
+    - name: Create an IAM policy called AWSLoadBalancerControllerIAMPolicy
       run: |
         aws iam create-policy \
-        --policy-name awsLoadBalancerControllerIAMPolicy \
+        --policy-name AWSLoadBalancerControllerIAMPolicy \
         --policy-document file://iam-policy.json
 
-    - name: Create a IAM role and ServiceAccount for the Load Balancer controller
-      run: |
-        eksctl create iamserviceaccount \
-        --cluster=prod \
-        --namespace=kube-system \
-        --name=aws-load-balancer-controller \
-        --attach-policy-arn=arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:policy/awsLoadBalancerControllerIAMPolicy \
-        --approve
-
-    # - name: Install CRDS
+    # - name: Create a IAM role and ServiceAccount for the Load Balancer controller
     #   run: |
-    #     kubectl apply -k "github.com/aws/eks-charts/stable/aws-load-balancer-controller//crds?ref=master"
+    #     eksctl create iamserviceaccount \
+    #     --cluster=prod \
+    #     --namespace=kube-system \
+    #     --name=aws-load-balancer-controller \
+    #     --attach-policy-arn=arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:policy/AWSLoadBalancerControllerIAMPolicy \
+    #     --approve
 
     - name: Add Helm repository
       run: |
@@ -124,7 +120,7 @@ jobs:
           --set serviceAccount.create=false \
           --set serviceAccount.name=aws-load-balancer-controller \
           -n kube-system
-          --set image.tag="v2.6.2"
+          
     - name: Verify deployment
       run: |
         kubectl get deployment -n kube-system aws-load-balancer-controller
