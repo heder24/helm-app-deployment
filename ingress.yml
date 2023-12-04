@@ -4,7 +4,7 @@ metadata:
   name: echoserver
   namespace: echoserver
   annotations:
-    **kubernetes.io/ingress.class: alb
+    kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/tags: Environment=prod,Team=app**
     alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-west-2:xxxxx:certificate/xxxxxxx
@@ -13,13 +13,13 @@ metadata:
     #alb.ingress.kubernetes.io/wafv2-acl-arn: <WAFv2 ACL ARN HERE>
 spec:
   rules:
-    - host: "*.amazonaws.com"
+    - host: "*hederdevops.com"
       http:
         paths:
-          - path: /echo
+          - path: /
             pathType: Prefix
             backend:
               service:
-                name: echoserver
+                name: knote
                 port:
                   number: 80
