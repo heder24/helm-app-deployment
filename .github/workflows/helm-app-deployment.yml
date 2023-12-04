@@ -109,8 +109,8 @@ jobs:
         # Apply the CRDs
         kubectl apply -f crds.yaml
 
-        # Clean up the downloaded file
-        rm crds.yaml
+        # # Clean up the downloaded file
+        # rm crds.yaml
 
 
     - name: Deploy AWS Load Balancer Controller
