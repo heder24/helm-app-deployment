@@ -121,21 +121,21 @@ jobs:
       run: |
         kubectl get deployment -n kube-system aws-load-balancer-controller
 
-    - name: Download cert from ACM
-      run: | 
-        # Download the SSL certificate and private key from AWS ACM
-        aws acm export-certificate \
-          --certificate-arn arn:aws:acm:us-east-2:312029113425:certificate/9abb221d-17c8-4145-82b4-64bd368fd92c \
-          --output pem \
-          --no-include-private-key > certificate.pem
+    # - name: Download cert from ACM
+    #   run: | 
+    #     # Download the SSL certificate and private key from AWS ACM
+    #     aws acm export-certificate \
+    #       --certificate-arn arn:aws:acm:us-east-2:312029113425:certificate/9abb221d-17c8-4145-82b4-64bd368fd92c \
+    #       --output pem \
+    #       --no-include-private-key > certificate.pem
 
-        # Extract the private key
-        awk '/-----BEGIN PRIVATE KEY-----/{flag=1;next}/-----END PRIVATE KEY-----/{flag=0}flag' certificate.pem > private-key.pem
+    #     # Extract the private key
+    #     awk '/-----BEGIN PRIVATE KEY-----/{flag=1;next}/-----END PRIVATE KEY-----/{flag=0}flag' certificate.pem > private-key.pem
 
-        # Create the TLS secret in Kubernetes
-        kubectl create secret tls knote-tls-secret \
-          --cert=certificate.pem \
-          --key=private-key.pem
+    #     # Create the TLS secret in Kubernetes
+    #     kubectl create secret tls knote-tls-secret \
+    #       --cert=certificate.pem \
+    #       --key=private-key.pem
 
     - name: Deploy to EKS
       run: | 
