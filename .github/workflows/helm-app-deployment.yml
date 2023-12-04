@@ -107,7 +107,8 @@ jobs:
 
     - name: Install CRDS
       run: |
-        kubectl apply -k "stable/aws-load-balancer-controller/crds?ref=master"
+        kubectl apply -k "https://github.com/aws/eks-charts/stable/aws-load-balancer-controller//crds?ref=master"
+        
 
     - name: Deploy AWS Load Balancer Controller
       run: |
