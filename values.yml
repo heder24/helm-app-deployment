@@ -15,3 +15,10 @@ rbac:
   create: true
 
 extraArgs: {}
+
+tls:
+  acm:
+    enabled: true
+    secretName: knote-tls-secret
+    certificateARN: arn:aws:acm:your-region:your-account-id:certificate/your-acm-certificate-id
+

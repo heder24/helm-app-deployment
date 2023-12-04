@@ -43,11 +43,7 @@ jobs:
       uses: azure/setup-helm@v1
       with:
         version: 'v3.13.2'
-    
-    # - name: Helm init 
-    #   run: helm init  --stable-repo-url https://charts.helm.sh/stable
-
-
+  
     - name: Install eksctl
       run: |
         ARCH=amd64
@@ -124,6 +120,24 @@ jobs:
     - name: Verify deployment
       run: |
         kubectl get deployment -n kube-system aws-load-balancer-controller
-    # - name: Install CRDS
-    #   run: |
-    #     kubectl apply -k "github.com/aws/eks-charts/stable/aws-load-balancer-controller//crds?ref=master"
+
+    - name: Download cert from ACM
+      run: | 
+        # Download the SSL certificate and private key from AWS ACM
+        aws acm export-certificate \
+          --certificate-arn YOUR_CERTIFICATE_ARN \
+          --output pem \
+          --no-include-private-key > certificate.pem
+
+        # Extract the private key
+        awk '/-----BEGIN PRIVATE KEY-----/{flag=1;next}/-----END PRIVATE KEY-----/{flag=0}flag' certificate.pem > private-key.pem
+
+        # Create the TLS secret in Kubernetes
+        kubectl create secret tls knote-tls-secret \
+          --cert=certificate.pem \
+          --key=private-key.pem
+
+    - name: Deploy to EKS
+      run: | 
+        kubectl apply -f ingresss.yml
+
