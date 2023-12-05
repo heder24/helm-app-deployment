@@ -7,7 +7,7 @@ metadata:
     kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/tags: Environment=prod,Team=app**
-    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-west-2:xxxxx:certificate/xxxxxxx
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-2:312029113425:certificate/0e2b4a0d-e1f9-41fe-a036-56d1cce3e53c
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
     alb.ingress.kubernetes.io/ssl-redirect: '443'
     #alb.ingress.kubernetes.io/wafv2-acl-arn: <WAFv2 ACL ARN HERE>
