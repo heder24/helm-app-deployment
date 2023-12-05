@@ -62,12 +62,12 @@ jobs:
     - name: Verify eksctl installation
       run: eksctl version
 
-    - name: Create IAM OIDC provider
-      run: |
-        eksctl utils associate-iam-oidc-provider \
-        --region us-east-2 \
-        --cluster prod \
-        --approve
+    # - name: Create IAM OIDC provider
+    #   run: |
+    #     eksctl utils associate-iam-oidc-provider \
+    #     --region us-east-2 \
+    #     --cluster prod \
+    #     --approve
 
     # - name: Download IAM policy for the AWS Load Balancer Controller
     #   run: |
