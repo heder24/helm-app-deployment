@@ -128,13 +128,13 @@ jobs:
         helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
         helm repo update
 
-    - name: Install NGINX Ingress Controller
-      run: |
-        helm install prod-ingress-nginx ingress-nginx/ingress-nginx
+    # - name: Install NGINX Ingress Controller
+    #   run: |
+    #     helm install ingress-nginx ingress-nginx/ingress-nginx
 
-    - name: Verify deployment
-      run: |
-        kubectl get deployment  prod-ingress-nginx
+    # - name: Verify deployment
+    #   run: |
+    #     kubectl get deployment  ingress-nginx
   
     - name: Deploy load balancer to EKS
       run: | 
