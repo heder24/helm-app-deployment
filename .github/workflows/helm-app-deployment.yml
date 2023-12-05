@@ -130,11 +130,11 @@ jobs:
 
     - name: Install NGINX Ingress Controller
       run: |
-        helm install ingress-nginx ingress-nginx/ingress-nginx
+        helm install prod-ingress-nginx ingress-nginx/ingress-nginx
 
     - name: Verify deployment
       run: |
-        kubectl get deployment  ingress-nginx
+        kubectl get deployment  prod-ingress-nginx
   
     - name: Deploy load balancer to EKS
       run: | 
