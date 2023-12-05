@@ -123,6 +123,23 @@ jobs:
       run: |
         kubectl get deployment -n kube-system aws-load-balancer-controller
 
+
+    - name: Add NGINX Helm repository
+      run: |
+        helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+        helm repo update
+
+    - name: Install NGINX Ingress Controller
+      run: |
+        helm install ingress-nginx ingress-nginx/ingress-nginx
+
+    - name: Verify deployment
+      run: |
+        kubectl get deployment  ingress-nginx
+
+
+    
+
     - name: Deploy load balancer to EKS
       run: | 
         kubectl apply -f ingresss.yml
