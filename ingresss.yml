@@ -9,7 +9,7 @@ metadata:
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
     alb.ingress.kubernetes.io/actions.ssl-redirect: '{"Type": "redirect", "RedirectConfig": { "Protocol": "HTTPS", "Port": "443", "StatusCode": "HTTP_301"}}'
-    alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:us-east-2:312029113425:certificate/6627abf4-f4a5-47b7-b586-b4b9686904f8"
+    alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:us-east-2:312029113425:certificate/0e2b4a0d-e1f9-41fe-a036-56d1cce3e53c"
 spec:
   rules:
     - host: hederdevops.com
