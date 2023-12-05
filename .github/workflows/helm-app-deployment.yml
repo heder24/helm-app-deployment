@@ -99,14 +99,16 @@ jobs:
 
     - name: Install CRDS
       run: |
-        # Download the CRDs
-        curl -LO "https://raw.githubusercontent.com/aws/eks-charts/master/stable/aws-load-balancer-controller/crds/crds.yaml"
+        kubectl apply -k "github.com/aws/eks-charts/stable/aws-load-balancer-controller/crds?ref=master"
 
-        # Apply the CRDs
-        kubectl apply -f crds.yaml
+        # # Download the CRDs
+        # curl -LO "https://raw.githubusercontent.com/aws/eks-charts/master/stable/aws-load-balancer-controller/crds/crds.yaml"
 
-        # # Clean up the downloaded file
-        # rm crds.yaml
+        # # Apply the CRDs
+        # kubectl apply -f crds.yaml
+
+        # # # Clean up the downloaded file
+        # # rm crds.yaml
 
 
     - name: Deploy AWS Load Balancer Controller
