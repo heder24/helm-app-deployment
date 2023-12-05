@@ -133,13 +133,12 @@ jobs:
     #   run: |
     #     helm install ingress-nginx ingress-nginx/ingress-nginx
 
-    - name: Verify deployment
-      run: |
-        kubectl get deployment  ingress-nginx
+    # - name: Verify deployment
+    #   run: |
+    #     kubectl get deployment  ingress-nginx
 
 
-    
-
+  
     - name: Deploy load balancer to EKS
       run: | 
         kubectl apply -f ingresss.yml
