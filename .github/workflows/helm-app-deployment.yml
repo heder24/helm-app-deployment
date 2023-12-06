@@ -116,7 +116,6 @@ jobs:
         helm upgrade -i aws-load-balancer-controller eks/aws-load-balancer-controller \
           --set clusterName=prod \
           --set region= us-east-2 \
-          --set vpcId=${{ secrets.AWS_ACCOUNT_ID }} \
           --set serviceAccount.create=false \
           --set serviceAccount.name=aws-load-balancer-controller \
           -n kube-system
