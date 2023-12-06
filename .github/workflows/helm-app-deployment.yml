@@ -115,7 +115,6 @@ jobs:
       run: |
         helm upgrade -i aws-load-balancer-controller eks/aws-load-balancer-controller \
           --set clusterName=prod \
-          --set region= us-east-2 \
           --set serviceAccount.create=false \
           --set serviceAccount.name=aws-load-balancer-controller \
           -n kube-system
@@ -140,4 +139,6 @@ jobs:
     - name: Deploy load balancer to EKS
       run: | 
         kubectl apply -f ingress.yml
+
+        
 
