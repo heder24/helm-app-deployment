@@ -1,25 +1,38 @@
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: knote
-  # namespace: echoserver
+  namespace: default
+  name: ingress
   annotations:
     kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/tags: Environment=prod,Team=app**
-    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-2:312029113425:certificate/f7d6e1e8-6750-4d0e-b21e-d9e98f14f025
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
-    alb.ingress.kubernetes.io/ssl-redirect: '443'
-    #alb.ingress.kubernetes.io/wafv2-acl-arn: <WAFv2 ACL ARN HERE>
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/subnets: public_subnet_one,public_subnet_two
+    alb.ingress.kubernetes.io/certificate-arn: acm_ssl_arn
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
+    alb.ingress.kubernetes.io/group.name: app
+    alb.ingress.kubernetes.io/actions.ssl-redirect: >-
+        {
+            "Type": "redirect",
+            "RedirectConfig": {
+                "Protocol": "HTTPS",
+                "Port": "443",
+                "Host": "#{host}",
+                "Path": "/#{path}",
+                "Query": "#{query}",
+                "StatusCode": "HTTP_301"
+            }
+        }
 spec:
   rules:
-    - host: "www.hederdevops.com"
-      http:
+     - host: www.hederdevops.com  ##Replace the host value with your desired custom domain 
+       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: knote
+                name: knote ##Replace service name example with SVC that you created during the sample application deployment
                 port:
-                  number: 80
+                  number: 80 ##Replace 80 with application port number
