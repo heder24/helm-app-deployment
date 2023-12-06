@@ -42,7 +42,7 @@ jobs:
     - name: Set up Helm
       uses: azure/setup-helm@v1
       with:
-        version: 'v3.13.2'
+        version: 'latest'
   
     - name: Install eksctl
       run: |
@@ -101,16 +101,6 @@ jobs:
       run: |
         kubectl apply -k "github.com/aws/eks-charts/stable/aws-load-balancer-controller/crds?ref=master"
 
-        # Download the CRDs
-        curl -LO "https://raw.githubusercontent.com/aws/eks-charts/master/stable/aws-load-balancer-controller/crds/crds.yaml"
-
-        # Apply the CRDs
-        kubectl apply -f crds.yaml
-
-        # # Clean up the downloaded file
-        # rm crds.yaml
-
-
     - name: Deploy AWS Load Balancer Controller
       run: |
         helm upgrade -i aws-load-balancer-controller eks/aws-load-balancer-controller \
@@ -140,5 +130,5 @@ jobs:
       run: | 
         kubectl apply -f ingress.yml
 
-        
+
 
