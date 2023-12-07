@@ -87,6 +87,7 @@ jobs:
         --namespace=kube-system \
         --name=aws-load-balancer-controller \
         --attach-policy-arn=arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:policy/AWSLoadBalancerControllerIAMPolicy \
+        --override-existing-serviceaccounts \
         --approve
 
     - name: Add Helm repository
