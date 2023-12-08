@@ -83,12 +83,12 @@ jobs:
     - name: Create a IAM role and ServiceAccount for the Load Balancer controller
       run: |
         eksctl create iamserviceaccount \
-        --cluster=prod \
-        --namespace=kube-system \
-        --name=aws-load-balancer-controller \
-        --attach-policy-arn=arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:policy/AWSLoadBalancerControllerIAMPolicy \
-        --override-existing-serviceaccounts \
-        --approve
+          --cluster prod \
+          --namespace kube-system \
+          --name aws-load-balancer-controller \
+          --attach-policy-arn arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:policy/AWSLoadBalancerControllerIAMPolicy \
+          --override-existing-serviceaccounts \
+          --approve
 
     - name: Install Helm
       run: |
