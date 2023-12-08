@@ -74,11 +74,11 @@ jobs:
         curl -o iam-policy.json https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/main/docs/install/iam_policy.json
 
 
-    # - name: Create an IAM policy called AWSLoadBalancerControllerIAMPolicy
-    #   run: |
-    #     aws iam create-policy \
-    #     --policy-name AWSLoadBalancerControllerIAMPolicy \
-    #     --policy-document file://iam-policy.json
+    - name: Create an IAM policy called AWSLoadBalancerControllerIAMPolicy
+      run: |
+        aws iam create-policy \
+        --policy-name AWSLoadBalancerControllerIAMPolicy \
+        --policy-document file://iam-policy.json
 
     - name: Create a IAM role and ServiceAccount for the Load Balancer controller
       run: |
@@ -143,7 +143,6 @@ jobs:
     - name: Deploy load balancer to EKS
       run: | 
         kubectl apply -f ingress.yml
-
 
         
 
