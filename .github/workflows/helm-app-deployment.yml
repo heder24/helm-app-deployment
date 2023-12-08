@@ -118,11 +118,7 @@ jobs:
           --set serviceAccount.create=false \
           --set serviceAccount.name=aws-load-balancer-controller \
           -n kube-system
-    
-    - name: Install CRDS
-      run: |
-        kubectl apply -k "github.com/aws/eks-charts/stable/aws-load-balancer-controller/crds?ref=master"
-            
+  
     - name: Verify deployment
       run: |
         kubectl get deployment -n kube-system aws-load-balancer-controller
