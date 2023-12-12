@@ -31,8 +31,8 @@ metadata:
                 name: knote
                 port:
                   number: 80
-  tls:
-    - hosts:
-        - hederdevops.com
-        - www.hederdevops.com
+  # tls:
+  #   - hosts:
+  #       - hederdevops.com
+  #       - www.hederdevops.com
       # secretName: knote-tls-secret
