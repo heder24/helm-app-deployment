@@ -122,8 +122,9 @@ jobs:
           --set serviceAccount.create=false \
           --set serviceAccount.name=aws-load-balancer-controller \
           -n kube-system
-          --kubectl patch deployment/aws-load-balancer-controller -p '{"spec":{"progressDeadlineSeconds":600}}' -n kube-system
-  
+  - name: Fix deadline issue
+      run: |
+        kubectl patch deployment/aws-load-balancer-controller -p '{"spec":{"progressDeadlineSeconds":600}}' -n kube-system
     - name: Verify deployment
       run: |
         kubectl get deployment -n kube-system aws-load-balancer-controller
