@@ -117,7 +117,7 @@ jobs:
         helm upgrade -i aws-load-balancer-controller eks/aws-load-balancer-controller \
           --set clusterName=prod \
           --set serviceAccount.create=false \
-          --set serviceAccount.name=aws-load-balancer-controller \
+          --set serviceAccount.name=eksctl-prod-addon-iamserviceaccount-default-a-Role1-s3EOB6XgkGYE\
           -n kube-system
   
     - name: Verify deployment
