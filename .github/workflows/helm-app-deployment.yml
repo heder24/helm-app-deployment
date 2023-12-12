@@ -133,6 +133,7 @@ jobs:
     # - name: Verify deployment
     #   run: |
     #      kubectl get deployment -n ingress-nginx-controller
+    
   
     - name: Deploy load balancer to EKS
       run: | 
