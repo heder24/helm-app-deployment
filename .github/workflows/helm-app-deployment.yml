@@ -65,8 +65,8 @@ jobs:
     - name: Create IAM OIDC provider
       run: |
         eksctl utils associate-iam-oidc-provider \
-        --region us-east-2 \
-        --cluster prod \
+        --region=us-east-2 \
+        --cluster=prod \
         --approve
 
     - name: Download IAM policy for the AWS Load Balancer Controller
@@ -74,20 +74,20 @@ jobs:
         curl -o iam-policy.json https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/main/docs/install/iam_policy.json
 
 
-    # - name: Create an IAM policy called AWSLoadBalancerControllerIAMPolicy
-    #   run: |
-    #     aws iam create-policy \
-    #     --policy-name AWSLoadBalancerControllerIAMPolicy \
-    #     --policy-document file://iam-policy.json
+    - name: Create an IAM policy called AWSLoadBalancerControllerIAMPolicy
+      run: |
+        aws iam create-policy \
+        --policy-name AWSLoadBalancerControllerIAMPolicy \
+        --policy-document file://iam-policy.json
 
     - name: Create a IAM role and ServiceAccount for the Load Balancer controller
       run: |
         eksctl create iamserviceaccount \
-          --cluster prod \
-          --namespace kube-system \
-          --name aws-load-balancer-controller \
-          --role-name AmazonEKSLoadBalancerControllerRole \
-          --attach-policy-arn arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:policy/AWSLoadBalancerControllerIAMPolicy \
+          --cluster=prod \
+          --namespace=kube-system \
+          --name=aws-load-balancer-controller \
+          --role-name=AmazonEKSLoadBalancerControllerRole \
+          --attach-policy-arn=arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:policy/AWSLoadBalancerControllerIAMPolicy \
           --override-existing-serviceaccounts \
           --approve
 
@@ -117,7 +117,7 @@ jobs:
         helm upgrade -i aws-load-balancer-controller eks/aws-load-balancer-controller \
           --set clusterName=prod \
           --set serviceAccount.create=false \
-          --set serviceAccount.name=eksctl-prod-addon-iamserviceaccount-default-a-Role1-s3EOB6XgkGYE\
+          --set serviceAccount.name=aws-load-balancer-controller \
           -n kube-system
   
     - name: Verify deployment
