@@ -111,7 +111,10 @@ jobs:
     - name: Install CRDS
       run: |
         kubectl apply -k "github.com/aws/eks-charts/stable/aws-load-balancer-controller/crds?ref=master"
-
+   
+    - name: Fix deadline issue
+      run: |
+        kubectl patch deployment.v1.apps/aws-load-balancer-controller -p '{"spec":{"progressDeadlineSeconds":600}}'
     - name: Deploy AWS Load Balancer Controller
       run: |
         helm upgrade -i aws-load-balancer-controller eks/aws-load-balancer-controller \
@@ -133,7 +136,7 @@ jobs:
     # - name: Verify deployment
     #   run: |
     #      kubectl get deployment -n ingress-nginx-controller
-    
+
   
     - name: Deploy load balancer to EKS
       run: | 
