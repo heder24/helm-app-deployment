@@ -94,8 +94,8 @@ jobs:
     - name: Create a ServiceAccount and IAM role for the Load Balancer controller
       run: |
         kubectl create serviceaccount aws-load-balancer-controller -n kube-system
-        kubectl apply -f aws-load-balancer-controller-role.yaml
-        kubectl apply -f aws-load-balancer-controller-role-binding.yaml
+        kubectl apply -f aws-load-balancer-controller-role.yml
+        kubectl apply -f aws-load-balancer-controller-role-binding.yml
 
     - name: Install Helm
       run: |
@@ -131,7 +131,7 @@ jobs:
     # - name: Fix deadline issue
     #   run: |
     #     kubectl patch deployment/aws-load-balancer-controller -p '{"spec":{"progressDeadlineSeconds":600}}' -n kube-system
-    
+
     - name: Verify deployment
       run: |
         kubectl get deployment -n kube-system aws-load-balancer-controller
