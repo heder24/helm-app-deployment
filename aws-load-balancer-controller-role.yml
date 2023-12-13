@@ -1,24 +1,6 @@
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
 metadata:
-  name: aws-load-balancer-controller-role
-rules:
-- apiGroups:
-  - ""
-  resources:
-  - services
-  verbs:
-  - get
-  - list
-  - watch
-  - create
-  - update
-  - patch
-  - delete
-- apiGroups:
-  - ""
-  resources:
-  - events
-  verbs:
-  - create
-  - patch
+  labels:
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    meta.helm.sh/release-name: aws-load-balancer-controller
+    meta.helm.sh/release-namespace: kube-system
