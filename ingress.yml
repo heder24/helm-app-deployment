@@ -8,7 +8,7 @@ metadata:
     kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
-    alb.ingress.kubernetes.io/subnets: public_subnet_one,public_subnet_two
+    alb.ingress.kubernetes.io/subnets: 1,2
     # alb.ingress.kubernetes.io/certificate-arn: acm_ssl_arn
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
     alb.ingress.kubernetes.io/group.name: app
