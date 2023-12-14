@@ -82,7 +82,7 @@ jobs:
 
     - name: Create a IAM role and ServiceAccount for the Load Balancer controller
       run: |
-        eksctl create iamserviceaccountserviceaccount \
+        eksctl create iamserviceaccount \
           --cluster=prod \
           --namespace=kube-system \
           --name=aws-load-balancer-controller \
