@@ -64,7 +64,7 @@ jobs:
         version: '<version>' # default is latest
       id: install
 
-      - name: Verify eksctl installation
+    - name: Verify eksctl installation
       run: eksctl version
 
     - name: Create IAM OIDC provider
