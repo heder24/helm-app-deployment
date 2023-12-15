@@ -92,6 +92,7 @@ jobs:
           --name=aws-load-balancer-controller \
           --attach-policy-arn=arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:policy/AWSLoadBalancerControllerIAMPolicy \
           --approve
+          --verbose
 
     # - name: Create a ServiceAccount and IAM role for the Load Balancer controller
     #   run: |
