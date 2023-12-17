@@ -9,7 +9,7 @@ metadata:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
     # alb.ingress.kubernetes.io/certificate-arn: acm_ssl_arn
-    alb.ingress.kubernetes.io/subnets: Private Subnet One,Private Subnet Two
+    # alb.ingress.kubernetes.io/subnets: Private Subnet One,Private Subnet Two
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
     alb.ingress.kubernetes.io/group.name: app
     alb.ingress.kubernetes.io/actions.ssl-redirect: >-
