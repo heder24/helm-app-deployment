@@ -151,6 +151,7 @@ jobs:
   
     - name: Deploy load balancer to EKS
       run: | 
+        kubectl apply -f rbac.yml
         kubectl apply -f ingress.yml
 
         
