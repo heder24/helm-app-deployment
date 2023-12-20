@@ -66,16 +66,16 @@ jobs:
     - name: Verify eksctl installation
       run: eksctl version
 
-    - name: Create IAM OIDC provider
-      run: |
-        eksctl utils associate-iam-oidc-provider \
-        --region=us-east-2 \
-        --cluster=prod \
-        --approve
+    # - name: Create IAM OIDC provider
+    #   run: |
+    #     eksctl utils associate-iam-oidc-provider \
+    #     --region=us-east-2 \
+    #     --cluster=prod \
+    #     --approve
 
-    - name: Download IAM policy for the AWS Load Balancer Controller
-      run: |
-        curl -o iam-policy.json https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/main/docs/install/iam_policy.json
+    # - name: Download IAM policy for the AWS Load Balancer Controller
+    #   run: |
+    #     curl -o iam-policy.json https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/main/docs/install/iam_policy.json
 
 
     # - name: Create an IAM policy called AWSLoadBalancerControllerIAMPolicy
@@ -134,9 +134,9 @@ jobs:
     #   run:
     #     kubectl patch deployment/aws-load-balancer-controller -p '{"spec":{"progressDeadlineSeconds":600}}' -n kube-system
 
-    - name: Verify deployment
-      run: |
-        kubectl get deployment -n kube-system aws-load-balancer-controller
+    # - name: Verify deployment
+    #   run: |
+    #     kubectl get deployment -n kube-system aws-load-balancer-controller
 
     # - name: Deploy NGINX Ingress Controller
     #   run: |
@@ -151,7 +151,7 @@ jobs:
   
     - name: Deploy load balancer to EKS
       run: | 
-        kubectl apply -f rbac.yml
+        # kubectl apply -f rbac.yml
         kubectl apply -f ingress.yml
 
         
