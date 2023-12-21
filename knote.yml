@@ -1,7 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
+  namespace: knote-app
   name: knote
+
 spec:
   selector:
     app: knote
@@ -13,6 +15,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: knote-app
   name: knote
 spec:
   replicas: 1

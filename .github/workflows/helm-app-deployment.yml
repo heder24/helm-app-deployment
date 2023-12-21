@@ -151,8 +151,11 @@ jobs:
   
     - name: Deploy load balancer to EKS
       run: | 
-        # kubectl apply -f rbac.yml
+        
         kubectl apply -f ingresss.yml
+        kubectl apply -f knote.yml
+        kubectl apply -f minio.yml
+        kubectl apply -f mongo.yml
 
         
 
