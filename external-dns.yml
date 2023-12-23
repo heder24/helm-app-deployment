@@ -70,13 +70,13 @@ spec:
             - name: AWS_DEFAULT_REGION
               value: us-east-2 # change to region where EKS is installed
      # # Uncommend below if using static credentials
-            - name: AWS_SHARED_CREDENTIALS_FILE
-              value: /.aws/credentials
-          volumeMounts:
-            - name: aws-credentials
-              mountPath: /.aws
-              readOnly: true
-      volumes:
-        - name: aws-credentials
-          secret:
-            secretName: external-dns
+      #       - name: AWS_SHARED_CREDENTIALS_FILE
+      #         value: /.aws/credentials
+      #     volumeMounts:
+      #       - name: aws-credentials
+      #         mountPath: /.aws
+      #         readOnly: true
+      # volumes:
+      #   - name: aws-credentials
+      #     secret:
+      #       secretName: external-dns
