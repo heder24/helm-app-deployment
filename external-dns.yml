@@ -65,6 +65,7 @@ spec:
             - --aws-zone-type=public # only look at public hosted zones (valid values are public, private or no value for both)
             - --registry=txt
             - --txt-owner-id=external-dns
+            - --syncInterval=1m
           env:
             - name: AWS_DEFAULT_REGION
               value: us-east-2 # change to region where EKS is installed
