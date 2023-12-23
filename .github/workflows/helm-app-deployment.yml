@@ -156,7 +156,7 @@ jobs:
         kubectl apply -f knote.yml
         kubectl apply -f minio.yml
         kubectl apply -f mongo.yml
-        kubectl apply -f external-dns.yml
+        kubectl create -f external-dns.yml
 
         
 
