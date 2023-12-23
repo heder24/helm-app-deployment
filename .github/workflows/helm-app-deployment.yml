@@ -84,15 +84,15 @@ jobs:
     #     --policy-name AWSLoadBalancerControllerIAMPolicy \
     #     --policy-document file://iam-policy.json
 
-    # - name: Create a IAM role and ServiceAccount for the Load Balancer controller
-      # run: |
-      #   eksctl create iamserviceaccount \
-      #     --cluster=prod \
-      #     --namespace=kube-system \
-      #     --name=aws-load-balancer-controller \
-      #     --attach-policy-arn=arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:policy/AWSLoadBalancerControllerIAMPolicy \
-      #     --approve
-      #     --verbose
+    - name: Create a IAM role and ServiceAccount for the Load Balancer controller
+      run: |
+        eksctl create iamserviceaccount \
+          --cluster=prod \
+          --namespace=kube-system \
+          --name=aws-load-balancer-controller \
+          --attach-policy-arn=arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:policy/AWSLoadBalancerControllerIAMPolicy \
+          --approve
+          --verbose
 
     # - name: Create a ServiceAccount and IAM role for the Load Balancer controller
     #   run: |
