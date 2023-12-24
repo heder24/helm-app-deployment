@@ -171,9 +171,9 @@ jobs:
         kubectl create -f external-dns.yml
 
     - name: Annotation for the external-dns
-          run: |
-            kubectl patch serviceaccount "external-dns" --namespace kube-system --patch \
-            "{\"metadata\": { \"annotations\": { \"eks.amazonaws.com/role-arn\": \"arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:policy/AWSLoadBalancerControllerIAMPolicy\" }}}"
+      run: |
+        kubectl patch serviceaccount "external-dns" --namespace kube-system --patch \
+        "{\"metadata\": { \"annotations\": { \"eks.amazonaws.com/role-arn\": \"arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:policy/AWSLoadBalancerControllerIAMPolicy\" }}}"
 
         
 
