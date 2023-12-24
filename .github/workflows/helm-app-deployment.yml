@@ -99,7 +99,7 @@ jobs:
         --cluster=prod \
         --name "external-dns" \
         --namespace=kube-system \
-        --attach-policy-arn=arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:policy/AWSLoadBalancerControllerIAMPolicy \
+        --attach-policy-arn=arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:policy/ExternalDNSUpdatePolicy \
         --approve
 
     - name: Annotation for the external-dns
