@@ -108,9 +108,6 @@ jobs:
     #     # kubectl apply -f aws-load-balancer-controller-role.yml
     #     # kubectl apply -f aws-load-balancer-controller-role-binding.yml
 
-
-
-
     - name: Install Helm
       run: |
         curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
