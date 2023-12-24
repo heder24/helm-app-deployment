@@ -97,7 +97,7 @@ jobs:
       run: |
         eksctl create iamserviceaccount \
         --cluster=prod \
-        --name "external-dns" \
+        --name="external-dns" \
         --namespace=kube-system \
         --attach-policy-arn=arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:policy/ExternalDNSUpdatePolicy \
         --approve
