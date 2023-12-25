@@ -93,14 +93,14 @@ jobs:
     #       --attach-policy-arn=arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:policy/AWSLoadBalancerControllerIAMPolicy \
     #       --approve
           
-    - name: Create a IAM role and ServiceAccount for the external-dns
-      run: |
-        eksctl create iamserviceaccount \
-        --cluster=prod \
-        --name="external-dns" \
-        --namespace=kube-system \
-        --attach-policy-arn=arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:policy/ExternalDNSUpdatePolicy \
-        --approve
+    # - name: Create a IAM role and ServiceAccount for the external-dns
+    #   run: |
+    #     eksctl create iamserviceaccount \
+    #     --cluster=prod \
+    #     --name="external-dns" \
+    #     --namespace=kube-system \
+    #     --attach-policy-arn=arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:policy/ExternalDNSUpdatePolicy \
+    #     --approve
 
     # - name: Annotation for the external-dns
     #   run: |
@@ -168,12 +168,12 @@ jobs:
         kubectl apply -f knote.yml
         kubectl apply -f minio.yml
         kubectl apply -f mongo.yml
-        kubectl create -f external-dns.yml
+        # kubectl create -f external-dns.yml
 
-    - name: Annotation for the external-dns
-      run: |
-        kubectl patch serviceaccount "external-dns" --namespace kube-system --patch \
-        "{\"metadata\": { \"annotations\": { \"eks.amazonaws.com/role-arn\": \"arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:policy/AWSLoadBalancerControllerIAMPolicy\" }}}"
+    # - name: Annotation for the external-dns
+    #   run: |
+    #     kubectl patch serviceaccount "external-dns" --namespace kube-system --patch \
+    #     "{\"metadata\": { \"annotations\": { \"eks.amazonaws.com/role-arn\": \"arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:policy/AWSLoadBalancerControllerIAMPolicy\" }}}"
 
         
 
