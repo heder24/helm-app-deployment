@@ -120,61 +120,19 @@ jobs:
 
     - name: Verify Helm installation
       run: helm version
-
-    # - name: Add Helm repository
-    #   run: |
-    #     helm repo add eks https://aws.github.io/eks-charts
-
-    # - name: Update Helm repositories
-    #   run: |
-    #     helm repo update
-
-    # - name: Install CRDS
-    #   run: |
-    #     kubectl apply -k "github.com/aws/eks-charts/stable/aws-load-balancer-controller/crds?ref=master"
-   
-    # - name: Deploy AWS Load Balancer Controller
-    #   run: |
-    #     helm upgrade -i aws-load-balancer-controller eks/aws-load-balancer-controller \
-    #       --set clusterName=prod \
-    #       --set serviceAccount.create=false \
-    #       --set serviceAccount.name=aws-load-balancer-controller \
-    #       -n kube-system
-
-    #   if: always()
-    # - name: Deploy AWS Load Balancer Controller
-    #   run:
-    #     kubectl patch deployment/aws-load-balancer-controller -p '{"spec":{"progressDeadlineSeconds":600}}' -n kube-system
-
-    # - name: Verify deployment
-    #   run: |
-    #     kubectl get deployment -n kube-system aws-load-balancer-controller
-
-    # - name: Deploy NGINX Ingress Controller
-    #   run: |
-    #     kubectl create namespace ingress-nginx
-    #     helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-    #     helm repo update
-    #     helm install ingress-nginx ingress-nginx/ingress-nginx --create-namespace --namespace kube-system --set controller.service.type=LoadBalancer --set controller.service.annotations."service\.beta\.kubernetes\.io/aws-load-balancer-type"="nlb"
-    # - name: Verify deployment
-    #   run: |
-    #      kubectl get deployment -n ingress-nginx-controller
-
   
-    - name: Deploy manifest files to EKS
-      run: | 
+    # - name: Deploy manifest files to EKS
+    #   run: | 
         
-        kubectl apply -f ingresss.yml
-        # kubectl apply -f knote.yml
-        # kubectl apply -f minio.yml
-        # kubectl apply -f mongo.yml
-        # kubectl create -f external-dns.yml
+    #     kubectl apply -f ingresss.yml
+    #     # kubectl apply -f knote.yml
+    #     # kubectl apply -f minio.yml
+    #     # kubectl apply -f mongo.yml
+    #     # kubectl create -f external-dns.yml
 
-    # - name: Annotation for the external-dns
-    #   run: |
-    #     kubectl patch serviceaccount "external-dns" --namespace kube-system --patch \
-    #     "{\"metadata\": { \"annotations\": { \"eks.amazonaws.com/role-arn\": \"arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:policy/AWSLoadBalancerControllerIAMPolicy\" }}}"
-
+     - name: Deploy manifest files to EKS
+      run: | 
+        helm install knote ./knote
         
 
 

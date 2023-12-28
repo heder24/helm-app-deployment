@@ -1,3 +1,9 @@
+---
+# knote-app-namespace.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: knote-app
 
 ---
 apiVersion: networking.k8s.io/v1
@@ -8,7 +14,7 @@ metadata:
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
-    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-2:312029113425:certificate/fbe6e36f-df25-4299-b884-746a735455e1
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-2:312029113425:certificate/33d199f0-e39a-410f-818d-04778beeef07
     # alb.ingress.kubernetes.io/group.name: app
     alb.ingress.kubernetes.io/actions.ssl-redirect: >-
         {
