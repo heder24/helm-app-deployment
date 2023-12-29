@@ -39,25 +39,6 @@ jobs:
       run : |
          aws eks update-kubeconfig --region us-east-2 --name prod
 
-    # - name: Set up Helm
-    #   uses: azure/setup-helm@v3
-    #   with:
-    #     version: 'latest'
-  
-    # - name: Install eksctl
-      # run: |
-      #   ARCH=amd64
-      #   PLATFORM=$(uname -s)_$ARCH
-
-      #   curl -sLO "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_$PLATFORM.tar.gz"
-
-      #   # (Optional) Verify checksum
-      #   curl -sL "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_checksums.txt" | grep $PLATFORM | sha256sum --check
-
-      #   tar -xzf eksctl_$PLATFORM.tar.gz -C /tmp && rm eksctl_$PLATFORM.tar.gz
-
-      #   sudo mv /tmp/eksctl /usr/local/bin
-      # shell: bash
     - name: Install eksctl
       run: |
         sudo curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
@@ -65,52 +46,6 @@ jobs:
 
     - name: Verify eksctl installation
       run: eksctl version
-
-    # - name: Create IAM OIDC provider
-    #   run: |
-    #     eksctl utils associate-iam-oidc-provider \
-    #     --region=us-east-2 \
-    #     --cluster=prod \
-    #     --approve
-
-    # - name: Download IAM policy for the AWS Load Balancer Controller
-    #   run: |
-    #     curl -o iam-policy.json https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/main/docs/install/iam_policy.json
-
-
-    # - name: Create an IAM policy called AWSLoadBalancerControllerIAMPolicy
-    #   run: |
-    #     aws iam create-policy \
-    #     --policy-name AWSLoadBalancerControllerIAMPolicy \
-    #     --policy-document file://iam-policy.json
-
-    # - name: Create a IAM role and ServiceAccount for the Load Balancer controller
-    #   run: |
-    #     eksctl create iamserviceaccount \
-    #       --cluster=prod \
-    #       --namespace=kube-system \
-    #       --name=aws-load-balancer-controller \
-    #       --attach-policy-arn=arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:policy/AWSLoadBalancerControllerIAMPolicy \
-    #       --approve
-          
-    # - name: Create a IAM role and ServiceAccount for the external-dns
-    #   run: |
-    #     eksctl create iamserviceaccount \
-    #     --cluster=prod \
-    #     --name="external-dns" \
-    #     --namespace=kube-system \
-    #     --attach-policy-arn=arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:policy/ExternalDNSUpdatePolicy \
-    #     --approve
-
-    # - name: Annotation for the external-dns
-    #   run: |
-    #     kubectl patch serviceaccount "external-dns" --namespace kube-system --patch \
-    #     "{\"metadata\": { \"annotations\": { \"eks.amazonaws.com/role-arn\": \"arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:policy/AWSLoadBalancerControllerIAMPolicy\" }}}"
-    # - name: Create a ServiceAccount and IAM role for the Load Balancer controller
-    #   run: |
-    #     kubectl create serviceaccount aws-load-balancer-controller -n kube-system
-    #     # kubectl apply -f aws-load-balancer-controller-role.yml
-    #     # kubectl apply -f aws-load-balancer-controller-role-binding.yml
 
     - name: Install Helm
       run: |
