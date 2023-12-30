@@ -68,6 +68,7 @@ jobs:
     - name: Deploy manifest files to EKS
       run: | 
         helm install knote ./knote
+        
 
 
         
