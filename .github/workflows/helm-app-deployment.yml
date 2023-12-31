@@ -56,13 +56,13 @@ jobs:
     - name: Verify Helm installation
       run: helm version
 
-    - name: Create Docker Registry Secret
-      run: |
-        kubectl create secret docker-registry regcred \
-        --docker-server=https://index.docker.io/v1/ \
-        --docker-username=${{secrets.DOCKER_HUB_USER}} \
-        --docker-password=${{secrets.DOCKER_HUB_TOKEN}} \
-        --docker-email=hederredon@gmail.com
+    # - name: Create Docker Registry Secret
+    #   run: |
+    #     kubectl create secret docker-registry regcred \
+    #     --docker-server=https://index.docker.io/v1/ \
+    #     --docker-username=${{secrets.DOCKER_HUB_USER}} \
+    #     --docker-password=${{secrets.DOCKER_HUB_TOKEN}} \
+    #     --docker-email=hederredon@gmail.com
 
   
     # - name: Deploy manifest files to EKS

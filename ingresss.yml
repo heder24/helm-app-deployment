@@ -14,7 +14,7 @@ metadata:
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
-    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-2:312029113425:certificate/dd17d3e6-19ce-43c8-8399-3e1b24c6daed
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-2:312029113425:certificate/7a53652e-0c22-401b-a5cc-5e83dec9661e
     # alb.ingress.kubernetes.io/group.name: app
     alb.ingress.kubernetes.io/actions.ssl-redirect: >-
         {
