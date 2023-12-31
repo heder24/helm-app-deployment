@@ -37,7 +37,7 @@ jobs:
 
     - name:  update kubeconfig
       run : |
-         aws eks update-kubeconfig --region us-east-2 --name prod --profile terraform-sa
+         aws eks update-kubeconfig --region us-east-2 --name prod 
 
     - name: Install eksctl
       run: |
