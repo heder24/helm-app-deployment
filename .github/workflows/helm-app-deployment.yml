@@ -74,9 +74,9 @@ jobs:
     #     # kubectl apply -f mongo.yml
     # #     # kubectl create -f external-dns.yml
 
-    # - name: Deploy manifest files to EKS
-    #   run: | 
-    #     helm install knote ./knote
+    - name: Deploy manifest files to EKS
+      run: | 
+        helm install knote ./knote
 
 
 
